@@ -2,6 +2,7 @@
   </head>
   <body>
     <a-scene>
+       <a-sky src="7xx0ccx-a-path-with-trees-on-the-side-of-a-river.jpeg"></a-sky>      
       <a-box position="-3 -.75 -2" rotation="0 90 0" height= "2.5" color="#A0522D"></a-box>
       <a-box position="-1.5 -.75 -2" rotation="0 180 0" height= "2.5" width = "2" color="#000000"></a-box>
       <a-box position="0 -0.75 -2" rotation="0 90 0" height= "2.5" color="#A0522D"></a-box>
@@ -26,24 +27,92 @@
       <a-box position="5.5 1.5 0" rotation="0 0 90" height= "9" width= "2" color="#A0522D"></a-box>
       <a-plane position="0 -2 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
-       <a-asset-item id="plant" src="sa0GJHdqBT.zip"></a-asset-item>
+     <a-assets>
+        <a-asset-item id="plant" src="snake_plant.glb"></a-asset-item>
       </a-assets>
+      <a-entity
+
+        gltf-model="#snake_plant.glb"
+        position="400 0 100"
+        rotation="0 90 0"
+        scale="50 50 50"
+      ></a-entity>
 
       <a-entity
 
-        gltf-model="#plant"
+        id="cameraRig"
 
-        position="400 0 100"
+        movement-controls="constrainToNavMesh: false;"
 
-        rotation="0 90 0"
+        navigator="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable"
 
-        scale="100 100 100"
+        position="5 5 10"
 
-      ></a-entity>    
+        rotation="0 180 0"
+
+      >
+
+        <!-- Basic movement and teleportation  -->
+
+
+
+        <!-- camera -->
+
+        <a-entity
+
+          id="head"
+
+          camera="active: true"
+
+          position="0 1.6 0"
+
+          look-controls="pointerLockEnabled: true; reverseMouseDrag: false"
+
+        ></a-entity>
+
+
+
+        <!-- Left Controller -->
+
+        <a-entity
+
+          id="leftHand"
+
+          hand-controls="hand: left; handModelStyle: lowPoly; color: #15ACCF"
+
+          teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger; curveShootingSpeed: 18; landingMaxAngle: 60"
+
+          visible="true"
+
+        ></a-entity>
+
+
+
+        <!-- Right Controller -->
+
+        <a-entity
+
+          id="rightHand"
+
+          hand-controls="hand: right; handModelStyle: lowPoly; color: #15ACCF"
+
+          laser-controls
+
+          raycaster="showLine: true; far: 10; interval: 0; objects: .clickable, a-link;"
+
+          line="color: #7cfc00; opacity: 0.5"
+
+          visible="true"
+
+        ></a-entity>
+
+      </a-entity>
+
     </a-scene>
-</a-scene>
 
   </body>
 
 </html>
+
+      </a-assets>
 
